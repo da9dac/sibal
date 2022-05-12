@@ -1,0 +1,164 @@
+extends layout
+
+block content
+  .timeline
+    if user
+      .oneclick-icons
+        i#chat-icon.fa.fa-list(style='color: #333;' onclick='kkButton()') 교육과정
+        i#chat-icon.fa.fa-list(style='color: #333;' onclick='hakjumButton()') 남은학점
+      .chat-bar
+        button#chat-button.collapsible(type='button') 가톨릭관동대학교
+          i#chat-icon.fa.fa-fw.fa-comments-o(style='color: #fff;')
+        .content
+          .full-chat-block
+            .outer-container
+              .chat-container
+                #chatbox
+                  h5#chat-timestamp
+                  p#botStarterMessage.botText
+                    span Loading...
+                .chat-bar-input-block
+                  #userInput
+                    //i#chat-icon.fa.fa-list(style='color: #333;' onclick='kkButton()') 교육과정
+                    //i#chat-icon.fa.fa-list(style='color: #333;' onclick='hakjumButton()') 남은학점
+                    input#textInput.input-box(type='text' name='msg' placeholder='메시지를 입력하세요')
+                    p
+                  .chat-bar-icons
+                    i#chat-icon.fa.fa-camera-retro(style='color: #333;' onclick='heartButton()')
+                    i#chat-icon.fa.fa-fw.fa-send(style='color: #333;' onclick='sendButton()')
+                #chat-bar-bottom
+                  p
+      script(src='js/Chat.js')
+      script.
+        var name = `#{user.nick}`;
+        function firstBotMessage() {
+          let firstMessage = `${name}님 안녕하세요!`
+          document.getElementById("botStarterMessage").innerHTML = "<p class='botText'><span>" + firstMessage + '</span></p>';
+          document.getElementById("userInput").scrollIntoView(false);
+        }
+        firstBotMessage();
+        function getBotResponse(input) {
+          var dname = `#{user.dnick}`;
+          var depa = #{user.dcategory};
+          var year = #{user.uyear};
+          var grade = #{user.grade};
+          //var snum = #{user.email};
+          var kp = #{user.ascore};
+          var ks = #{user.bscore};
+          var jg = #{user.cscore};
+          var ib = #{user.dscore};
+          var tt = #{user.escore};
+
+          if  (input == "!명령어") {
+            return "!학점, !학과정보, 준비중, test";
+          }	
+          else if (input == "!학점") {
+            return `남은학점, 졸업학점`;
+          }
+          else if (input == "!학과정보") {
+            return `교육과정, 준비중`;
+          }
+          else if (input == "test") {
+            return `${name},${year},${kp},${ks},${jg},${ib},${tt}`;
+            //return `${pname},${pphone},${pemail}`;
+          }
+          else if (input == "교육과정") {
+            if (grade == 1) {
+              switch(dname)  {
+                case `소프트웨어` : return `${dname}학과 `;
+                  break;
+                case `건축` : return `${dname}학과`;
+                  break;
+                case `전자공` : return `${dname}학과`;
+                  break;
+                case `토목` : return `${dname}학과`;
+                  break;
+                case `건축공` : return `${dname}학과`;
+                  break;
+                default: return `잘못된 정보입니다.`;
+              }
+            } else if (grade == 2) {
+                switch(dname)  {
+                  case `소프트웨어` : return `${dname}학과 `;
+                    break;
+                  case `건축` : return `${dname}학과`;
+                    break;
+                  case `전자공` : return `${dname}학과`;
+                    break;
+                  case `토목` : return `${dname}학과`;
+                    break;
+                  case `건축공` : return `${dname}학과`;
+                    break;
+                  default: return `잘못된 정보입니다.`;
+                }
+              } else if (grade == 3) {
+                switch(dname)  {
+                  case `소프트웨어` : return `${dname}학과 `;
+                    break;
+                  case `건축` : return `${dname}학과 ${grade}학년 교육과정은 사제동행세미나, 건축설계3/4, 구조디자인, 건축환경계획, 건축시공학, 건축법규, 건축계획론, 환경친화건축, 현대건축론, 현장실습 입니다.`;
+                    break;
+                  case `전자공` : return `${dname}학과`;
+                    break;
+                  case `토목` : return `${dname}학과`;
+                    break;
+                  case `건축공` : return `${dname}학과`;
+                    break;
+                  default: return `잘못된 정보입니다.`;
+                }
+              } else if (grade == 4) {
+                switch(dname)  {
+                  case `소프트웨어` : return `${dname}학과 ${grade}학년 교육과정은 사제동행세미나, 프로그래밍언어응용과컴파일러, 데이터구현기반알고리즘, 응용SW기반인공지능이론과실습, 컴퓨터보안과실습, 증강현실과가상현실, 데이터통신과SW보안, 소프트웨어캡스톤디자인, 무선통신과인터넷 입니다.`;
+                    break;
+                  case `건축` : return `${dname}학과`;
+                    break;
+                  case `전자공` : return `${dname}학과`;
+                    break;
+                  case `토목` : return `${dname}학과`;
+                    break;
+                  case `건축공` : return `${dname}학과`;
+                    break;
+                  default: return `잘못된 정보입니다.`;
+                }
+              } else if (grade == 5) {
+                switch(dname)  {
+                  case `소프트웨어` : return `${dname}학과 `;
+                    break;
+                  case `건축` : return `${dname}학과`;
+                    break;
+                  case `전자공` : return `${dname}학과`;
+                    break;
+                  case `토목` : return `${dname}학과`;
+                    break;
+                  case `건축공` : return `${dname}학과`;
+                    break;
+                  default: return `잘못된 정보입니다.`;
+                }
+              } else {
+                return `${dname}학과 교육과정 정보가 아직 등록되지 않았습니다.`;
+              }
+          }
+          else if (input == "남은학점" || input == "졸업학점") {
+            if (year == 2017) {
+              switch(depa)  {
+                case 0 : return `졸업까지 남은 학점은 교필 ${28-kp}점, 교선 ${8-ks}점, 전공 ${69-jg}점, 일선 ${25-ib}점, 총 ${130-tt}점 입니다.`;
+                  break;
+                case 1 : return `졸업까지 남은 학점은 교필 ${28-kp}점, 교선 ${8-ks}점, 전공 ${106-jg}점, 일선 ${18-ib}점, 총 ${160-tt}점 입니다.`;
+                  break;
+                default: return `잘못된 정보입니다.`;
+              }
+            } else if (year == 2018)  {
+                switch(depa)  {
+                  case 0 : return `졸업까지 남은 학점은 교필 ${16-kp}점, 교선 ${20-ks}점, 전공 ${69-jg}점, 일선 ${25-ib}점, 총 ${130-tt}점 입니다.`;
+                    break;
+                  case 1 : return `졸업까지 남은 학점은 교필 ${16-kp}점, 교선 ${20-ks}점, 전공 ${106-jg}점, 일선 ${18-ib}점, 총 ${160-tt}점 입니다.`;
+                    break;
+                  default: return `잘못된 정보입니다.`;
+                }
+            } else {
+              return `${year}년도 ${dname}학과 졸업 정보가 아직 등록되지 않았습니다.`;
+            }
+          }
+          else {
+            return "잘 이해하지 못했어요. 질문을 확인해주세요";
+          } 
+        }
